@@ -12,6 +12,22 @@ pluginManagement {
         id 'org.liquibase.gradle' version "${liquibasePluginVersion}"
         id 'org.sonarqube' version "${sonarqubePluginVersion}"
         id "io.spring.nohttp" version "${springNoHttpPluginVersion}"
+        id "com.gradle.enterprise" version "3.6"
+        id 'com.gradle.common-custom-user-data-gradle-plugin' version '1.2'
+    }
+}
+
+plugins {
+    id 'com.gradle.enterprise'
+    id 'com.gradle.common-custom-user-data-gradle-plugin'
+}
+
+gradleEnterprise {
+    server = "https://ge.jhipster.tech"
+    buildScan {
+        captureTaskInputFiles = true
+        uploadInBackground = System.getenv("CI") == null // adjust to your CI provider
+        publishAlways()
     }
 }
 
