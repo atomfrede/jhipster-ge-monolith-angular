@@ -1,0 +1,8 @@
+application {
+  config {
+    baseName jhipstergemonolithangular
+    packageName jhipster.tech
+    buildTool gradle
+    prodDatabaseType postgresql
+  }
+}
