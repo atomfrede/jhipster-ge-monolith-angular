@@ -18,6 +18,7 @@ jobs:
             SPRING_JPA_SHOW_SQL: false
             JHI_DISABLE_WEBPACK_LOGS: true
             NG_CLI_ANALYTICS: false
+            GRADLE_ENTERPRISE_ACCESS_KEY: ${{secrets.GRADLE_ENTERPRISE_ACCESS_KEY}}
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
