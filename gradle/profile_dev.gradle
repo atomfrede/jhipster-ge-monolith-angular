@@ -24,6 +24,8 @@ bootRun {
 }
 
 task webapp(type: NpmTask) {
+    
+   outputs.cacheIf { true }
     inputs.files("package-lock.json")
     inputs.files("build.gradle")
     inputs.files("angular.json")
