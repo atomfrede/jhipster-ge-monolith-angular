@@ -9,9 +9,30 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
+const fs = require('fs');
 const hasha = require('hasha');
 
 const tls = process.env.TLS;
+
+function hashI18nFiles() {
+  let buffers = [];
+  for (const elem of getFiles('src/main/webapp/i18n')) {
+    buffers.push(fs.readFileSync(`src/main/webapp/i18n/${elem}`));
+  }
+  return hasha(buffers);
+}
+const getFiles = filePath => {
+  const files = [];
+  for (const file of fs.readdirSync(filePath)) {
+    const fullPath = filePath + path.sep + file;
+    if (fs.lstatSync(fullPath).isDirectory()) {
+      getFiles(fullPath).forEach(x => files.push(file + path.sep + x));
+    } else {
+      files.push(file);
+    }
+  }
+  return files;
+};
 
 module.exports = (config, options) => {
   // PLUGINS
@@ -91,7 +112,7 @@ module.exports = (config, options) => {
   config.plugins.push(
     new webpack.DefinePlugin({
       'process.env': {
-        BUILD_TIMESTAMP: `'${hasha('unicorn')}'`,
+        BUILD_TIMESTAMP: `'${hashI18nFiles()}'`,
         // APP_VERSION is passed as an environment variable from the Gradle / Maven build tasks.
         VERSION: `'${process.env.hasOwnProperty('APP_VERSION') ? process.env.APP_VERSION : 'DEV'}'`,
         DEBUG_INFO_ENABLED: config.mode === 'development',
