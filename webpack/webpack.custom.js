@@ -9,6 +9,8 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
+const hasha = require('hasha');
+
 const tls = process.env.TLS;
 
 module.exports = (config, options) => {
@@ -89,7 +91,7 @@ module.exports = (config, options) => {
   config.plugins.push(
     new webpack.DefinePlugin({
       'process.env': {
-        BUILD_TIMESTAMP: `'${new Date().getTime()}'`,
+        BUILD_TIMESTAMP: `'${hasha('unicorn')}'`,
         // APP_VERSION is passed as an environment variable from the Gradle / Maven build tasks.
         VERSION: `'${process.env.hasOwnProperty('APP_VERSION') ? process.env.APP_VERSION : 'DEV'}'`,
         DEBUG_INFO_ENABLED: config.mode === 'development',
