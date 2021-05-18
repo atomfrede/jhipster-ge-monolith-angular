@@ -292,7 +292,7 @@ task cleanResources(type: Delete) {
 }
 
 wrapper {
-    gradleVersion = "6.8.3"
+    gradleVersion = "7.0.1"
 }
 
 
