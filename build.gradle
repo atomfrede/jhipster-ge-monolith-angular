@@ -160,11 +160,6 @@ liquibase {
     runList = project.ext.runList
 }
 
-gitProperties {
-    // failOnNoGitDirectory = false
-    keys = ["git.branch", "git.commit.id.abbrev", "git.commit.id.describe"]
-}
-
 checkstyle {
     toolVersion "${checkstyleVersion}"
     configFile file("checkstyle.xml")
