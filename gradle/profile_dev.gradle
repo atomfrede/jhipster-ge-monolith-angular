@@ -25,6 +25,7 @@ bootRun {
 
 task webapp(type: NpmTask) {
 
+    outputs.cacheIf { true }
     inputs.property('appVersion', project.version)
     inputs.files("package-lock.json")
         .withPropertyName('package-lock')
