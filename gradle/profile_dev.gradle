@@ -11,6 +11,7 @@ if (project.hasProperty("tls")) {
     profiles += ",tls"
 }
 
+
 springBoot {
     buildInfo {
         properties {
@@ -25,7 +26,6 @@ bootRun {
 
 task webapp(type: NpmTask) {
 
-    outputs.cacheIf { true }
     inputs.property('appVersion', project.version)
     inputs.files("package-lock.json")
         .withPropertyName('package-lock')
