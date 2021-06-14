@@ -12,11 +12,6 @@ if (project.hasProperty("api-docs")) {
 }
 
 
-// gitProperties {
-    // failOnNoGitDirectory = false
-    // keys = ["git.branch", "git.commit.id.abbrev", "git.commit.id.describe"]
-// }
-
 springBoot {
     buildInfo()
 }
