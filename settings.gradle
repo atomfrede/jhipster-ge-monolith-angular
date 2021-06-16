@@ -32,12 +32,12 @@ gradleEnterprise {
 }
 
 buildCache {
-    local { enabled = true }
-    // remote(HttpBuildCache) {
-    //     push = true
-    //     enabled = true
-    //     url = 'https://ge.jhipster.tech/cache/' // note the trailing slash!
-    // }
+    local { enabled = false }
+    remote(HttpBuildCache) {
+        push = true
+        enabled = true
+        url = 'https://ge.jhipster.tech/cache/' // note the trailing slash!
+    }
 }
 
 rootProject.name = "jhipstergemonolithangular"
